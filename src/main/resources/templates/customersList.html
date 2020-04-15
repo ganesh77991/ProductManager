@@ -17,6 +17,8 @@
 				<th>Mobile No</th>
 				<th>Email Id</th>
 				<th>Security Question</th>
+				<th>Status</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,7 +27,8 @@
 				<td th:text="${customer.mobileNumber}"></td>
 				<td th:text="${customer.emailId}"></td>
 				<td th:text="${customer.secAns}"></td>
-
+				<td th:text="${customer.status}"></td>
+				<td><a href="#">BLACK</a></td>
 			</tr>
 		</tbody>
 	</table>

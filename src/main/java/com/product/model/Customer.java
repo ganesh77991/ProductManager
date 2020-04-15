@@ -18,6 +18,8 @@ public class Customer {
 	private String secQuation;
 	
 	private String secAns;
+	
+	private boolean status=true;
 
 	public String getMobileNumber() {
 		return mobileNumber;
@@ -67,14 +69,20 @@ public class Customer {
 		this.secAns = secAns;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [mobileNumber=" + mobileNumber + ", customerName=" + customerName + ", emailId=" + emailId
-				+ ", password=" + password + ", secQuation=" + secQuation + ", secAns=" + secAns + "]";
+				+ ", password=" + password + ", secQuation=" + secQuation + ", secAns=" + secAns + ", status=" + status
+				+ "]";
 	}
-	
-	
 
-		
-
+	
 }
