@@ -7,24 +7,24 @@ import javax.persistence.Id;
 public class Customer {
 	
 	@Id
-	private Integer customerId;
+	private String mobileNumber;
 	
 	private String customerName;
 	
-	private String contactNumber;
-	
 	private String emailId;
 	
-	private String status;
+	private String password;
 	
-	private String action;
+	private String secQuation;
+	
+	private String secAns;
 
-	public Integer getCustomerId() {
-		return customerId;
+	public String getMobileNumber() {
+		return mobileNumber;
 	}
 
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
 	public String getCustomerName() {
@@ -35,14 +35,6 @@ public class Customer {
 		this.customerName = customerName;
 	}
 
-	public String getContactNumber() {
-		return contactNumber;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
 	public String getEmailId() {
 		return emailId;
 	}
@@ -51,28 +43,38 @@ public class Customer {
 		this.emailId = emailId;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getAction() {
-		return action;
+	public String getSecQuation() {
+		return secQuation;
 	}
 
-	public void setAction(String action) {
-		this.action = action;
+	public void setSecQuation(String secQuation) {
+		this.secQuation = secQuation;
+	}
+
+	public String getSecAns() {
+		return secAns;
+	}
+
+	public void setSecAns(String secAns) {
+		this.secAns = secAns;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", contactNumber="
-				+ contactNumber + ", emailId=" + emailId + ", status=" + status + ", action=" + action + "]";
+		return "Customer [mobileNumber=" + mobileNumber + ", customerName=" + customerName + ", emailId=" + emailId
+				+ ", password=" + password + ", secQuation=" + secQuation + ", secAns=" + secAns + "]";
 	}
 	
 	
+
+		
 
 }

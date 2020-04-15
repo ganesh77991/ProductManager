@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Customer Form Page</h2>
+<form th:action="@{/cust}" th:object="${customer}" method="post">
+		<pre>
+	Customer Name:   <input type="text" th:field="*{customerName}">
+	
+	Mobile  Number : <input type="text" th:field="*{mobileNumber}">
+	
+	Email Id : <input type="text" th:field="*{emailId}">
+	
+	Password : <input type="text" th:field="*{password}">
+	
+	Security Quation: <select th:field="*{secQuation}">
+	<option value="" >Select A Quation</option>
+    <option th:value="AreYouVirgin" >Are you Virgin?</option>
+    <option th:value="NameYourFirstLover" >Name your First Lover?</option>
+    <option th:value="NameYourSecondLover" >Name your Second Lover?</option>
+    <option th:value="FaveretPornStar">Who is your PornStar?</option>
+</select>
+	
+	Answer         :  <input type="text" th:field="*{secAns}">
+	
+	
+	    <button>Submit</button>
+	
+	</pre>
+	</form>
+
+</body>
+</html>
