@@ -9,6 +9,5 @@ import java.lang.String;
 
 public interface CountryJpa extends JpaRepository<Country, Integer>{
 
-	List<Country> findByCountryId(Integer countryid);
-	List<Country> findByName(String name);
+
 }

@@ -4,40 +4,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class Address {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer addressId;
+	private String contactNo;
 	private String address;
-	private Integer cityId;
-	private Integer vendorId;
-	private String pincode;
-	private Integer customerId;
 	private String landmark;
-	private String name;
-	private String contact;
-	public Address() {
-		super();
-	}
-	public Address(Integer addressId, String address, Integer cityId, Integer vendorId, String pincode,
-			Integer customerId, String landmark, String name, String contact) {
-		super();
-		this.addressId = addressId;
-		this.address = address;
-		this.cityId = cityId;
-		this.vendorId = vendorId;
-		this.pincode = pincode;
-		this.customerId = customerId;
-		this.landmark = landmark;
-		this.name = name;
-		this.contact = contact;
-	}
+	private Integer countryId;
+	private Integer stateId;
+	private Integer cityId;
+	private String pincode;
+	
 	public Integer getAddressId() {
 		return addressId;
 	}
 	public void setAddressId(Integer addressId) {
 		this.addressId = addressId;
+	}
+	public String getContactNo() {
+		return contactNo;
+	}
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
 	}
 	public String getAddress() {
 		return address;
@@ -45,17 +36,29 @@ public class Address {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getLandmark() {
+		return landmark;
+	}
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
+	public Integer getCountryId() {
+		return countryId;
+	}
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
+	}
+	public Integer getStateId() {
+		return stateId;
+	}
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
 	public Integer getCityId() {
 		return cityId;
 	}
 	public void setCityId(Integer cityId) {
 		this.cityId = cityId;
-	}
-	public Integer getVendorId() {
-		return vendorId;
-	}
-	public void setVendorId(Integer vendorId) {
-		this.vendorId = vendorId;
 	}
 	public String getPincode() {
 		return pincode;
@@ -63,35 +66,11 @@ public class Address {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-	public Integer getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
-	public String getLandmark() {
-		return landmark;
-	}
-	public void setLandmark(String landmark) {
-		this.landmark = landmark;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getContact() {
-		return contact;
-	}
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
 	@Override
 	public String toString() {
-		return "Address [addressId=" + addressId + ", address=" + address + ", cityId=" + cityId + ", vendorId="
-				+ vendorId + ", pincode=" + pincode + ", customerId=" + customerId + ", landmark=" + landmark
-				+ ", name=" + name + ", contact=" + contact + "]";
+		return "Address [addressId=" + addressId + ", contactNo=" + contactNo + ", address=" + address + ", landmark="
+				+ landmark + ", countryId=" + countryId + ", stateId=" + stateId + ", cityId=" + cityId + ", pincode="
+				+ pincode + "]";
 	}
 	
 

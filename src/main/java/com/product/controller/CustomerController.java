@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.product.model.Address;
 import com.product.model.Customer;
 import com.product.service.CustomerService;
 
@@ -49,5 +50,7 @@ public class CustomerController {
 		map.addAttribute("customers", customers);
 		return "customersList";
 	}
+	
+	
 
 }

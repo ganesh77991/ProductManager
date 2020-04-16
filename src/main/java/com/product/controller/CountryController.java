@@ -52,12 +52,13 @@ public class CountryController {
 		map.addAttribute("state", new State());
 		return "state";
 	}
-	
-	@RequestMapping("/cont/{name}")
-	@ResponseBody
-	public List<Country> getCountryIname(@PathVariable("name") String name) {
-		
-		return repo.findByName(name);
-	}
+	/*
+	 * @RequestMapping("/cont/{name}")
+	 * 
+	 * @ResponseBody public List<Country> getCountryIname(@PathVariable("name")
+	 * String name) {
+	 * 
+	 * return repo.findByName(name); }
+	 */
 
 }

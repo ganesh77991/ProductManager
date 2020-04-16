@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.product.dao.CustomerDao;
+import com.product.model.Address;
 import com.product.model.Customer;
 
 @Service
@@ -25,6 +26,11 @@ public class CustomerService {
 		// TODO Auto-generated method stub
 		
 		return customerDao.getCustomers();
+	}
+
+	public void saveAddress(Address address) {
+		// TODO Auto-generated method stub
+		customerDao.saveAddress(address);
 	}
 
 }
