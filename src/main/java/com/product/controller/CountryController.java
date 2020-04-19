@@ -11,44 +11,113 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.product.jpa.CityJpa;
 import com.product.jpa.CountryJpa;
+import com.product.jpa.StateJpa;
+import com.product.model.City;
 import com.product.model.Country;
 import com.product.model.State;
 
 @Controller
 public class CountryController {
-	
+
 	@Autowired
-	CountryJpa repo;
+	CityJpa cityrepo;
+
+	@Autowired
+	StateJpa staterepo;
+
+	@Autowired
+	CountryJpa countryJpa;
+
 	
-	/*
-	 * @RequestMapping("/cont")
-	 * 
-	 * @ResponseBody public List<Country> getCountry() {
-	 * 
-	 * return repo.findAll(); }
-	 */
 	
+	@RequestMapping(value = "/cont",method = RequestMethod.POST)
+	public String saveCountry(@ModelAttribute("country") Country country, ModelMap map) {
+		
+		countryJpa.save(country);
+		
+		map.addAttribute("country", new Country());
+		
+		return "country";
+	}
+
 	@RequestMapping("/cont")
 	public String getCountryform(ModelMap map) {
 		map.addAttribute("country", new Country());
 		return "country";
 	}
 	
-	@RequestMapping(value = "/cont",method = RequestMethod.POST)
-	public String getCountryReg(@ModelAttribute("country")Country country,ModelMap map) {
+	@RequestMapping("/city")
+	public String getCityForm(ModelMap map) {
 		
-		repo.save(country);
-		map.addAttribute("country", new Country());
-		return "country";
+		
+		List<Country> countries=countryJpa.findAll();
+		map.addAttribute("countries", countries);
+		
+		List<State> states=staterepo.findAll();
+		
+		System.out.println(states);
+		
+		map.addAttribute("states", states);
+		
+		
+		map.addAttribute("city", new City());
+		return "city";
 	}
-	
-	@RequestMapping(value = "/state")
-	public String StateForm(ModelMap map) {
+
+	@RequestMapping(value = "/city", method = RequestMethod.POST)
+	public String getCountryReg(@ModelAttribute("city") City city, ModelMap map) {
 		
-		List<Country> countries=repo.findAll();
+		Country country=countryJpa.findById(city.getState().getCountry().getCountryId()).get();
 		
-		map.addAttribute("countries", countries);		
+		State state=staterepo.findById(city.getState().getStateId()).get();
+		
+		System.out.println(state);
+		
+		//state.setCountry(country);
+		
+		City c=new City();
+		c.setName(city.getName());
+		c.setState(state);
+		
+		cityrepo.save(c);
+		
+		List<Country> countries=countryJpa.findAll();
+		map.addAttribute("countries", countries);
+		
+		List<State> states=staterepo.findAll();
+		map.addAttribute("states", states);
+		
+		map.addAttribute("city", new City());
+		return "city";
+	}
+
+	@RequestMapping(value = "/state",method = RequestMethod.POST)
+	public String StateForm(@ModelAttribute("state")State state,ModelMap map) {
+
+
+		Country c = countryJpa.findById(state.getCountry().getCountryId()).get();
+
+		State s = new State();
+		s.setName(state.getName());
+		s.setCountry(c);		
+		staterepo.save(s);
+		
+		System.out.println("state saved successfully");
+		
+		List<Country> countries=countryJpa.findAll();
+		map.addAttribute("countries", countries);
+		map.addAttribute("state", new State());
+		return "state";
+	}
+
+	@RequestMapping(value = "/state", method = RequestMethod.GET)
+	public String saveState(ModelMap map) {
+
+		 List<Country> countries=countryJpa.findAll();
+
+		 map.addAttribute("countries", countries);
 		map.addAttribute("state", new State());
 		return "state";
 	}

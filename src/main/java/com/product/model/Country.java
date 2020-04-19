@@ -1,4 +1,5 @@
 package com.product.model;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,43 +18,22 @@ public class Country {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer countryId;
 	private String name;
-	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name = "CountryId",referencedColumnName = "CountryId")
-	private Set<State> states=new HashSet<State>();
-
 	public Integer getCountryId() {
 		return countryId;
 	}
-
 	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Set<State> getStates() {
-		return states;
-	}
-
-	public void setStates(Set<State> states) {
-		this.states = states;
-	}
-
 	@Override
 	public String toString() {
-		return "Country [countryId=" + countryId + ", name=" + name + ", states=" + states + "]";
+		return "Country [countryId=" + countryId + ", name=" + name + "]";
 	}
-	
-	
-	
-	
 	
 	
 }

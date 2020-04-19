@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.product.model.ProductCategory;
 import com.product.model.ProductMaster;
@@ -26,6 +27,16 @@ public class ShowProductController {
 
 	@Autowired
 	SubcategoryService SubcategoryService;
+	
+	@RequestMapping("/details/{id}")
+	public String showDetails(@PathVariable("id")Integer id,ModelMap map) {
+		
+		System.out.println(id);
+		ProductMaster product=productService.getProductById(id);
+		
+		map.addAttribute("product", product);		
+		return "single";
+	}
 
 	@RequestMapping("/{subCat}")
 	public String showProduct(@PathVariable("subCat") String subCat,ModelMap map) {
@@ -41,7 +52,11 @@ public class ShowProductController {
 		
 		List<ProductMaster> pros=productService.getProductsBySubCat(subCat);
 		map.addAttribute("pros", pros);
+		System.out.println(pros);
+		System.out.println(subCat);
 		map.addAttribute("product", new ProductMaster());
 		return "products";
 	}
+	
+	
 }

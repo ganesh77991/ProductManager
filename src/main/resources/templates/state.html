@@ -10,7 +10,7 @@
 <form th:action="@{/state}" th:object="${state}" method="post">
 		<pre>
 		
-	country  : <select th:field="*{countryId}">
+	country  : <select th:field="*{country.countryId}">
                          <option value=""> --SELECT--- </option>
                          <option th:each="cont : ${countries}"
                             th:value="${cont.countryId}"

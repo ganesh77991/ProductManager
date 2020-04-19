@@ -9,9 +9,9 @@
 <script>
 $(document).ready(function(){
   $("#country").change(function(){
-    alert("hiii country");
+   // alert("hiii country");
     var countryId = $(this).val();
-    alert(countryId);
+    //alert(countryId);
     $.ajax({
 		type: 'GET',
 		url: '/getStates/' + countryId,
@@ -19,18 +19,43 @@ $(document).ready(function(){
 			//alert("successed..");
 			//alert(result[0].productSubCat)
 			
-			var s = '';
+			var s = '<option value=""> --SELECT--- </option>';
 			for(var i = 0; i < result.length; i++) {
-				s += '<option value="' + result[i].productSubCat + '">' + result[i].productSubCat + '</option>';
+				s += '<option value="' + result[i].stateId + '">' + result[i].name + '</option>';
 			}
 			
 			//alert(s);
-			$('#subCating').html(s);
+			$('#state').html(s);
 			
 		}
     });
     
-  });  
+  });
+  
+  $("#state").change(function(){
+	    //alert("hiii state");
+	    var stateId = $(this).val();
+	   // alert(stateId);
+	    $.ajax({
+			type: 'GET',
+			url: '/getCities/' + stateId,
+			success: function(result) {
+				//alert("successed..");
+				//alert(result[0].productSubCat)
+				
+				var s = '<option value=""> --SELECT--- </option>';
+				for(var i = 0; i < result.length; i++) {
+					s += '<option value="' + result[i].cityId + '">' + result[i].name + '</option>';
+				}
+				
+				//alert(s);
+				$('#city').html(s);
+				
+			}
+	    });
+	    
+	  });  
+
 });
 </script>
 
@@ -54,19 +79,10 @@ $(document).ready(function(){
 	
 	State : <select th:field="*{stateId}" id="state">
                          <option value=""> --SELECT--- </option>
-                          <option th:value="telangana" >Telangana</option>
-                           <option th:value="andhrapradesh" >Andhra Pradesh</option>
-                            <option th:value="karnataka" >Karnataka</option>
-                             <option th:value="maharastra" >Maharastra</option>
-                             <option th:value="orissa" >Orissa</option>
                   </select>
 	
 	City :	<select th:field="*{cityId}" id="city">
                          <option value=""> --SELECT--- </option>
-                         <option th:value="newYork" >New York</option>
-                          <option th:value="hyderabad" >Hyderabad</option>
-                           <option th:value="banglore" >Banglore</option>
-                            <option th:value="mysuru" >Mysuru</option>
                   </select>
 	
 	Pincode   :  <input type="text" th:field="*{pincode}">

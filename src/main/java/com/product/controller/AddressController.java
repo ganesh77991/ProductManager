@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.product.model.Address;
+import com.product.model.City;
 import com.product.model.Country;
 import com.product.model.State;
 import com.product.service.AddressService;
@@ -45,14 +47,23 @@ public class AddressController {
 		return "address";
 	}
 	
-	@RequestMapping("/address/{id}")
-	public String getStates(@PathVariable("id")Integer countryId,ModelMap map) {
+	@RequestMapping("/getStates/{id}")
+	@ResponseBody
+	public List<State> getStates(@PathVariable("id")Integer countryId,ModelMap map) {
 		
 		
 		List<State> countries=addressServie.getStatesByCountryId(countryId);
-		map.addAttribute("countries", countries);
-		map.addAttribute("add", new Address());
-		return "address";
+		return countries;
+	}
+	
+	@RequestMapping("/getCities/{id}")
+	@ResponseBody
+	public List<City> getCites(@PathVariable("id")Integer countryId,ModelMap map) {
+		
+		
+		List<City> cities=addressServie.getCitiesByStateId(countryId);
+		
+		return cities;
 	}
 
 }

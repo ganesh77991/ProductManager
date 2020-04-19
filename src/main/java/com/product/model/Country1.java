@@ -9,28 +9,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class State {
-	
-	
+public class Country1 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer stateId;
+	private Integer countryId;
 	private String name;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="countryId")
-	private Country country;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "CountryId",referencedColumnName = "CountryId")
+	private Set<State> states=new HashSet<State>();
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getCountryId() {
+		return countryId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
 	}
 
 	public String getName() {
@@ -41,19 +38,22 @@ public class State {
 		this.name = name;
 	}
 
-	public Country getCountry() {
-		return country;
+	public Set<State> getStates() {
+		return states;
 	}
 
-	public void setCountry(Country country) {
-		this.country = country;
+	public void setStates(Set<State> states) {
+		this.states = states;
 	}
 
 	@Override
 	public String toString() {
-		return "State [stateId=" + stateId + ", name=" + name + ", country=" + country + "]";
+		return "Country [countryId=" + countryId + ", name=" + name + ", states=" + states + "]";
 	}
-
-		
-
+	
+	
+	
+	
+	
+	
 }

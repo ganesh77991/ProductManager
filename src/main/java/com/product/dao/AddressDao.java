@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.product.jpa.CityJpa;
 import com.product.jpa.CountryJpa;
 import com.product.jpa.StateJpa;
+import com.product.model.City;
 import com.product.model.Country;
 import com.product.model.State;
 
@@ -19,6 +21,9 @@ public class AddressDao {
 	@Autowired
 	StateJpa stateJpa;
 	
+	@Autowired
+	CityJpa cityJpa;
+	
 	public List<Country> getCountries(){
 		
 		return countryJpa.findAll();
@@ -27,7 +32,19 @@ public class AddressDao {
 
 	public List<State> getStatesByCountryId(Integer countryId) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return stateJpa.findByCountry(countryJpa.findById(countryId).get());
+	}
+
+
+	public List<City> getCitiesByStateId(Integer stateId) {
+		// TODO Auto-generated method stub
+		return cityJpa.findByState(stateJpa.findById(stateId).get());
+	}
+	
+	public void saveCountry() {
+		
+		countryJpa.save(null);
 	}
 
 }

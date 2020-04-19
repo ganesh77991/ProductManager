@@ -9,21 +9,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class State {
-	
-	
+public class State1 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer stateId;
 	private String name;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="countryId")
-	private Country country;
+
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "stateId",referencedColumnName = "stateId")
+	private Set<City> cities=new HashSet<City>();
 
 	public Integer getStateId() {
 		return stateId;
@@ -41,19 +38,20 @@ public class State {
 		this.name = name;
 	}
 
-	public Country getCountry() {
-		return country;
+	public Set<City> getCities() {
+		return cities;
 	}
 
-	public void setCountry(Country country) {
-		this.country = country;
+	public void setCities(Set<City> cities) {
+		this.cities = cities;
 	}
 
 	@Override
 	public String toString() {
-		return "State [stateId=" + stateId + ", name=" + name + ", country=" + country + "]";
+		return "State [stateId=" + stateId + ", name=" + name + ", cities=" + cities + "]";
 	}
-
-		
+	
+	
+	
 
 }
