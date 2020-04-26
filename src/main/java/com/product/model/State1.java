@@ -20,7 +20,7 @@ public class State1 {
 
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "stateId",referencedColumnName = "stateId")
-	private Set<City> cities=new HashSet<City>();
+	private Set<City1> cities=new HashSet<City1>();
 
 	public Integer getStateId() {
 		return stateId;
@@ -38,11 +38,11 @@ public class State1 {
 		this.name = name;
 	}
 
-	public Set<City> getCities() {
+	public Set<City1> getCities() {
 		return cities;
 	}
 
-	public void setCities(Set<City> cities) {
+	public void setCities(Set<City1> cities) {
 		this.cities = cities;
 	}
 

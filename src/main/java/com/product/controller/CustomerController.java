@@ -36,7 +36,7 @@ public class CustomerController {
 		custService.registerCustomer(customer);
 		
 		map.addAttribute("customer", new Customer());
-		return "registration";
+		return "login";
 	}
 	
 
