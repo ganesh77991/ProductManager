@@ -108,18 +108,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="order.html"> Track Order</a></li>
 					</ul>
 				</div>
-				<div class="header-right">
+				<div class="header-right" th:if="${user==null}">
 					<ul>
-						<li><i class="user"></i> <a href="account.html">My
-								Account</a></li>
-						<li class="login"><i class="lock"></i> <a href="login.html">Log
-								In/</a></li>
-						<li><i class="cart"></i> <a href="#">Shopping Cart</a></li>
-						<li class="last">5</li>
+						<li>
+							<i class="user"></i>
+							<a href="/login1">My Account</a>
+						</li>
+						<li class="login">
+							<i class="lock"></i>
+							<a href="/login1">Login</a>|
+						</li>
+						<li>
+							<i class="cart"></i>
+							<a href="#">Shopping Cart</a>
+						</li>
+						<li class="last"><span th:text="${cartCount}"></li>
 					</ul>
 					<div class="sign-up-right">
-						<a href="login.html">Sign Up</a>
+						<a href="/cust">Sign Up</a>
 					</div>
+				</div>
+				
+				<div class="header-right" th:if="${user!=null}">
+					<ul>
+						<li>
+							<i class="user"></i>
+							<a th:href="@{/userdetails/{id}(id=${user.userName})}"><span th:text="${user.userName}"></span></a>
+						</li>
+						<li class="login">
+							<i class="lock"></i>
+							<a href="/logout">logout</a>|
+						</li>
+						<li>
+							<i class="cart"></i>
+							<a href="#">Shopping Cart</a>
+						</li>
+						<li class="last"><span th:text="${cartCount}"></li>
+					</ul>
+					
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -228,9 +254,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</li>
 									</ul>
 									<div class="btn_form">
-										<form>
-											<input type="submit" value="add to cart" title="" />
+										<form th:action="@{/cart/{id}(id=${product.productName})}">
+										
+										<input type="hidden" name="pro" value="">
+											<!-- <input type="submit" value="add to cart1" title="" /> -->
 										</form>
+										<a th:href="@{/cart/{id}(id=${product.productName})}">add to cart</a> 
 									</div>
 									<span class="span_right"><a href="#">login to save
 											in wishlist </a></span>

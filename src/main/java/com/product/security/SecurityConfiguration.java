@@ -35,11 +35,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	System.out.println("SecurityConfiguration.configure() http");
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/login1").hasAnyRole("ADMIN")
+                .antMatchers("/login1").hasAnyRole("admin")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().defaultSuccessUrl("/login1")
-                .and().logout()
+                .and().logout().logoutSuccessUrl("/")
                 .permitAll();
     }
 

@@ -47,4 +47,9 @@ public class ProductDao {
 		return productrepo.findByProductSubCat(subCat);
 	}
 
+	public ProductMaster getProductByName(String pro) {
+		// TODO Auto-generated method stub
+		return productrepo.findByProductName(pro);
+	}
+
 }

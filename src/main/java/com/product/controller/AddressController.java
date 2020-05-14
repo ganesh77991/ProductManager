@@ -37,7 +37,7 @@ public class AddressController {
 	@Autowired
 	UsersRepository userJpa;
 	
-	 @PreAuthorize("hasAnyRole('ADMIN')")
+	
 	@RequestMapping("/address")
 	public String formAddress(HttpServletRequest req,ModelMap map) {
 		

@@ -45,4 +45,9 @@ public class ProductService {
 		return productdao.getProductBySubCat(subCat);
 	}
 
+	public ProductMaster getProductByName(String pro) {
+		// TODO Auto-generated method stub
+		return productdao.getProductByName(pro);
+	}
+
 }

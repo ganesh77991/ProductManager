@@ -6,15 +6,6 @@
 </head>
 <body>
 
-<h3>User Detials </h3>
-<pre>
-         UserName          <span th:text="${user.userName}"></span>
-                   
-         User EmailId         <span th:text="${user.emailId}"></span>
-                  
-         User Phone No.         <span th:text="${user.mobileNumber}"></span>
-   
-</pre>
 
 <pre>
       <a href="/address">Update Address</a>
@@ -25,5 +16,18 @@
 
       <a href="#">Orders</a>
 </pre>
+
+   <form action="">
+              <pre>
+    				 Old Email  <input type="text" >
+   			
+   			         New Email  <input type="text">
+   			
+   			         Password   <input type="password">
+   				
+   			     		<button>Submit</button>
+   </pre>
+               
+   </form>
 </body>
 </html>

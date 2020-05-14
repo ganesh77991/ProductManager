@@ -9,4 +9,6 @@ import java.util.List;
 public interface ProductJpa extends JpaRepository<ProductMaster, Integer> {
 
 	List<ProductMaster> findByProductSubCat(String productsubcat);
+	
+	ProductMaster findByProductName(String productname);
 }

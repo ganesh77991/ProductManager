@@ -6,9 +6,9 @@
 </head>
 <body>
 <h2>Customer Form Page</h2>
-<form th:action="@{/cust}" th:object="${customer}" method="post">
+<form th:action="@{/cust}" th:object="${user}" method="post">
 		<pre>
-	Customer Name:   <input type="text" th:field="*{customerName}">
+	Customer Name:   <input type="text" th:field="*{userName}">
 	
 	Mobile  Number : <input type="text" th:field="*{mobileNumber}">
 	

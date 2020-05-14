@@ -8,11 +8,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>BOX SHOP an E-Commerce online Shopping Category Flat Bootstarp responsive Website Template| Home :: w3layouts</title>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <!-- Custom Theme files -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,11 +23,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <!-- start menu -->
-<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="js/megamenu.js"></script>
+<link href="../css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="../js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <!-- start slider -->
-<script src="js/responsiveslides.min.js"></script>
+<script src="../js/responsiveslides.min.js"></script>
  <script>
     $(function () {
       $("#slider").responsiveSlides({
@@ -39,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
   </script>
 <!--end slider -->
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/flexslider.css" type="text/css" media="screen" />
 				<script type="text/javascript">
 			$(window).load(function() {
 				$("#flexiselDemo").flexisel({
@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			    
 			});
 		</script>
-		<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+		<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
 </head>
 <body>
 	<!-- header-section-starts -->
@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="order.html"> Track Order</a></li>
 					</ul>
 				</div>
-				<div class="header-right" th:if="${user==null}">
+				<div class="header-right">
 					<ul>
 						<li>
 							<i class="user"></i>
@@ -94,30 +94,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<i class="cart"></i>
 							<a href="#">Shopping Cart</a>
 						</li>
-						<li class="last"><span th:text="${cartCount}"></li>
+						<li class="last"><span th:text="${cartCount}"></span></li>
 					</ul>
 					<div class="sign-up-right">
 						<a href="/cust">Sign Up</a>
 					</div>
-				</div>
-				
-				<div class="header-right" th:if="${user!=null}">
-					<ul>
-						<li>
-							<i class="user"></i>
-							<a th:href="@{/userdetails/{id}(id=${user.userName})}"><span th:text="${user.userName}"></span></a>
-						</li>
-						<li class="login">
-							<i class="lock"></i>
-							<a href="/logout">logout</a>|
-						</li>
-						<li>
-							<i class="cart"></i>
-							<a href="#">Shopping Cart</a>
-						</li>
-						<li class="last"><span th:text="${cartCount}"></li>
-					</ul>
-					
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -125,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="wrap">
 			<div class="header-bottom">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.jpg" class="img-responsive" alt="" /></a>
+					<a href="index.html"><img src="../images/logo.jpg" class="img-responsive" alt="" /></a>
 				</div>
 				<div class="search">
 					<div class="search2">
@@ -176,16 +157,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <div class="callbacks_container">
 						  <ul class="rslides" id="slider">
 							 <li>
-								 <img src="images/slider1.jpg" alt=""/>
+								 <img src="../images/slider1.jpg" alt=""/>
 							 </li>
 							 <li>
-								 <img src="images/slider2.jpg" alt=""/>
+								 <img src="../images/slider2.jpg" alt=""/>
 							 </li>
 							 <li>
-								 <img src="images/slider3.jpg" alt=""/>
+								 <img src="../images/slider3.jpg" alt=""/>
 							 </li>
 							 <li>
-								 <img src="images/slider4.jpg" alt=""/>
+								 <img src="../images/slider4.jpg" alt=""/>
 							 </li>
 						  </ul>	      
 					  </div>
@@ -216,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a href="single.html">shop now<i class="go"></i></a>
 					</div>
 					<div class="right-grid-bottom-right">
-						<img src="images/headset.png" alt="" />
+						<img src="../images/headset.png" alt="" />
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -385,7 +366,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</li>
 				</ul>
 			</div>
-			<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+			<link rel="stylesheet" href="../css/flexslider.css" type="text/css" media="screen" />
 				<script type="text/javascript">
 			$(window).load(function() {
 				$("#flexiselDemo1").flexisel({
@@ -413,7 +394,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			    
 			});
 		</script>
-		<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+		<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
 		</div>
 		<div class="transport-grid">
 			<div class="col-md-4 shipping">
@@ -505,7 +486,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 			</div>
 			<div class="cards text-center">
-				<img src="images/cards.jpg" alt="" />
+				<img src="../images/cards.jpg" alt="" />
 			</div>
 			<div class="copyright text-center">
 				<p>Copyright &copy; 2015 All rights reserved | Template by  <a href="http://w3layouts.com">  W3layouts</a></p>

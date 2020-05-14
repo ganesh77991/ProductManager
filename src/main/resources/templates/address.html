@@ -62,6 +62,17 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>Address Form Page</h2>
+
+<pre>
+      <a href="/address">Update Address</a>
+
+      <a href="/email">Upadate Email Id</a>
+
+      <a href="/password">Update PassWord</a>
+
+      <a href="#">Orders</a>
+</pre>
+
 <form th:action="@{/address}" th:object="${add}" method="post">
 		<pre>
 	Contact No :   <input type="text" th:field="*{contactNo}">
