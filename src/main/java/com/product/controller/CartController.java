@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.product.model.ProductCategory;
 import com.product.model.ProductMaster;
@@ -53,5 +54,57 @@ public class CartController {
 		return "redirect:/"+proMaster.getProductSubCat();
 		
 	}
+	
+	@RequestMapping("/carts")
+	public String showCarts(HttpServletRequest request,ModelMap map) {
+		
+		List<ProductMaster> carts=new ArrayList<ProductMaster>();
+		
+		List<String> pros=(List<String>) request.getSession().getAttribute("MY_PROS");
+		
+		for (String pro : pros) {
+			ProductMaster product=productService.getProductByName(pro);
+			
+			carts.add(product);
+		}
+		System.out.println("carts products");
+		System.out.println(carts);
+		map.addAttribute("carts", carts);
+		
+		List<ProductCategory> categories = categoryService.getAllcats();
+		map.addAttribute("cats", categories);
+
+		List<ProductSubCategory> subcategories = SubcategoryService.getSubCats();
+		map.addAttribute("subCategories", subcategories);
+
+		List<ProductMaster> products = productService.getAllProducts();
+		map.addAttribute("products", products);
+		
+		
+		
+		return "cart";
+	}
+	@RequestMapping("/cartremove/{id}")
+	public String removeToCart(@PathVariable("id")String pro, HttpServletRequest request,ModelMap map) {
+		
+		
+		List<String> pros=(List<String>) request.getSession().getAttribute("MY_PROS");
+		
+		if (pros == null) {
+			pros = new ArrayList<>();
+			request.getSession().setAttribute("MY_PROS", pros);
+		}
+		pros.remove(pro);
+		request.getSession().setAttribute("MY_PROS", pros);
+		
+		System.out.println("list of orders "+pros.size());
+		
+		ProductMaster proMaster=productService.getProductByName(pro);
+		
+		System.out.println("add to cart msg ->"+proMaster.getProductSubCat());
+		
+		return "redirect:/carts";		
+	}
+	
 
 }
