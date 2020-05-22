@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.product.jpa.UsersRepository;
+import com.product.model.Address;
+import com.product.model.Country;
 import com.product.model.ProductCategory;
 import com.product.model.ProductMaster;
 import com.product.model.ProductSubCategory;
+import com.product.service.AddressService;
 import com.product.service.CategoryService;
 import com.product.service.ProductService;
 import com.product.service.SubcategoryService;
@@ -31,6 +35,12 @@ public class CartController {
 
 	@Autowired
 	SubcategoryService SubcategoryService;
+	
+	@Autowired
+	AddressService addressServie;
+	
+	@Autowired
+	UsersRepository userJpa;
 	
 	@RequestMapping("/cart/{id}")
 	public String addToCart(@PathVariable("id")String pro, HttpServletRequest request,ModelMap map) {
@@ -104,6 +114,22 @@ public class CartController {
 		System.out.println("add to cart msg ->"+proMaster.getProductSubCat());
 		
 		return "redirect:/carts";		
+	}
+	@RequestMapping("/proceed")
+	public String proceed(HttpServletRequest request,ModelMap map) {
+		
+		System.out.println("hh    "+request.getUserPrincipal().getName());
+		
+		List<Country> countries=addressServie.getCountries();
+		map.addAttribute("countries", countries);
+		map.addAttribute("add", new Address());
+		if(request.getUserPrincipal()!=null) {
+			map.addAttribute("user", userJpa.findByEmailId(request.getUserPrincipal().getName()).get().getUserName());
+			}
+			else {
+				map.addAttribute("user", null);
+			}
+		return "proceed";
 	}
 	
 
