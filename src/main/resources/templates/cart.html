@@ -188,7 +188,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 			</div>
 			<div align="right">
-			<button><a href="/proceed">Proceed to fuck</a></button>
+			
+			
+			  <div th:if="${!carts.empty}">
+			  <button><a href="/proceed">Proceed to fuck</a></button>
+	      </div>
+	      
 			</div>
 			
 		</div>

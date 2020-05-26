@@ -129,6 +129,10 @@ public class CartController {
 			else {
 				map.addAttribute("user", null);
 			}
+        List<Address> ads = addressServie.getAllAddress();
+        System.out.println(ads);
+        	map.addAttribute("ads", ads);
+        
 		return "proceed";
 	}
 	
