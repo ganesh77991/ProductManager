@@ -43,11 +43,14 @@ public class AddressController {
 		
 		 Principal userPrincipal = req.getUserPrincipal();
 		 
+		 if(req.getUserPrincipal()!=null) {
 		 System.out.println(userPrincipal.getName());
 		 
 		 Optional<Users>  user= userJpa.findByEmailId(userPrincipal.getName());
 		 
 		 System.out.println(user);
+		 
+		 }
 		
 		List<Country> countries=addressServie.getCountries();
 		map.addAttribute("countries", countries);

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.product.jpa.UsersRepository;
 import com.product.model.Address;
@@ -134,6 +133,34 @@ public class CartController {
         	map.addAttribute("ads", ads);
         
 		return "proceed";
+	}
+	@RequestMapping("/buy")
+	
+	public String buyProduct() {
+		return "payment";
+		
+	}
+	@RequestMapping("/purchase")
+	
+	public String purchaseProduct(HttpServletRequest request,ModelMap map ){
+		
+
+	List<ProductMaster> carts=new ArrayList<ProductMaster>();
+		
+		List<String> pros=(List<String>) request.getSession().getAttribute("MY_PROS");
+		
+		for (String pro : pros) {
+			ProductMaster product=productService.getProductByName(pro);
+			
+			carts.add(product);
+		}
+		System.out.println("carts products");
+		System.out.println(carts);
+		map.addAttribute("pros", carts);
+		
+			
+		return "/purchase";
+		
 	}
 	
 
