@@ -85,7 +85,7 @@ $(document).ready(function(){
 <h2 style="color:red;">please enter your Address for Delivery</h2>
 
 
-<form action="#" th:object="${add}" method="post" align="center">
+<form th:action="@{/newaddress}" th:object="${add}" method="post" align="center">
 		<pre>
 	Contact No :   <input type="text" th:field="*{contactNo}">
 	

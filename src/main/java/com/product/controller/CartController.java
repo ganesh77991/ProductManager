@@ -8,17 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.product.jpa.OrderJpa;
 import com.product.jpa.UsersRepository;
 import com.product.model.Address;
 import com.product.model.Country;
+import com.product.model.OrderList;
 import com.product.model.ProductCategory;
 import com.product.model.ProductMaster;
 import com.product.model.ProductSubCategory;
 import com.product.service.AddressService;
 import com.product.service.CategoryService;
+import com.product.service.CustomerService;
 import com.product.service.ProductService;
 import com.product.service.SubcategoryService;
 
@@ -39,7 +44,13 @@ public class CartController {
 	AddressService addressServie;
 	
 	@Autowired
+	CustomerService custService;
+	
+	@Autowired
 	UsersRepository userJpa;
+	
+	@Autowired
+	OrderJpa orderJpa;
 	
 	@RequestMapping("/cart/{id}")
 	public String addToCart(@PathVariable("id")String pro, HttpServletRequest request,ModelMap map) {
@@ -118,6 +129,7 @@ public class CartController {
 	public String proceed(HttpServletRequest request,ModelMap map) {
 		
 		System.out.println("hh    "+request.getUserPrincipal().getName());
+	
 		
 		List<Country> countries=addressServie.getCountries();
 		map.addAttribute("countries", countries);
@@ -154,6 +166,18 @@ public class CartController {
 			
 			carts.add(product);
 		}
+		
+		for (ProductMaster product : carts) {
+			
+			OrderList order=new OrderList();
+			
+			order.setProductId(product.getProductId());
+			order.setPriceEach(product.getPrice());
+			
+			orderJpa.save(order);
+			
+		}
+		
 		System.out.println("carts products");
 		System.out.println(carts);
 		map.addAttribute("pros", carts);
@@ -161,6 +185,16 @@ public class CartController {
 			
 		return "/purchase";
 		
+	}
+	
+	@RequestMapping(value = "/newaddress",method = RequestMethod.POST)
+	public String regAddress(@ModelAttribute("add")Address address,ModelMap map) {
+		
+		custService.saveAddress(address);
+		
+		
+		map.addAttribute("add", new Address());
+		return "payment";
 	}
 	
 
