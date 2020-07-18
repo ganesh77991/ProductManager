@@ -17,6 +17,7 @@ public class Address {
 	private Integer stateId;
 	private Integer cityId;
 	private String pincode;
+	private String userName;
 	
 	public Integer getAddressId() {
 		return addressId;
@@ -66,12 +67,19 @@ public class Address {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", contactNo=" + contactNo + ", address=" + address + ", landmark="
 				+ landmark + ", countryId=" + countryId + ", stateId=" + stateId + ", cityId=" + cityId + ", pincode="
-				+ pincode + "]";
+				+ pincode + ", userName=" + userName + "]";
 	}
+	
 	
 
 }

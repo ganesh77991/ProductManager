@@ -7,7 +7,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -59,7 +58,10 @@ public class AddressController {
 	}
 	
 	@RequestMapping(value = "/address",method = RequestMethod.POST)
-	public String regAddress(@ModelAttribute("add")Address address,ModelMap map) {
+	public String regAddress(@ModelAttribute("add")Address address,HttpServletRequest p,ModelMap map) {
+		
+		Users user=userJpa.findByEmailId(p.getUserPrincipal().getName()).get();
+		address.setUserName(user.getEmailId());
 		
 		custService.saveAddress(address);
 		

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class OrderList {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer orderId;
 	private Integer orderItemid;
 	private Integer VendorProductId;

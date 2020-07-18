@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.product.jpa.AddressJpa;
 import com.product.jpa.OrderJpa;
 import com.product.jpa.UsersRepository;
 import com.product.model.Address;
@@ -51,6 +54,9 @@ public class CartController {
 	
 	@Autowired
 	OrderJpa orderJpa;
+	
+	@Autowired
+	AddressJpa addJpa;
 	
 	@RequestMapping("/cart/{id}")
 	public String addToCart(@PathVariable("id")String pro, HttpServletRequest request,ModelMap map) {
@@ -140,7 +146,7 @@ public class CartController {
 			else {
 				map.addAttribute("user", null);
 			}
-        List<Address> ads = addressServie.getAllAddress();
+        List<Address> ads = addJpa.findByUserName(request.getUserPrincipal().getName());
         System.out.println(ads);
         	map.addAttribute("ads", ads);
         
@@ -188,8 +194,9 @@ public class CartController {
 	}
 	
 	@RequestMapping(value = "/newaddress",method = RequestMethod.POST)
-	public String regAddress(@ModelAttribute("add")Address address,ModelMap map) {
-		
+	public String regAddress(@ModelAttribute("add")Address address,ModelMap map,HttpServletRequest request) {
+		System.err.println(request.getUserPrincipal().getName());
+		address.setUserName(request.getUserPrincipal().getName());
 		custService.saveAddress(address);
 		
 		
